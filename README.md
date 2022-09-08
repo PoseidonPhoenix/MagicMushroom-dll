@@ -1,5 +1,5 @@
 # MagicMushroom-dll
-The source code of the dll that is required for SpaceCheatMode to run properly which includes a lot of functionality
+The source code of the dll that is required for <a href="https://github.com/PoseidonPhoenix/SpaceCheatMode">SpaceCheatMode</a> to run properly which includes a lot of functionality
 
 ## WARNINGS
 
