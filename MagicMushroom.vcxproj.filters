@@ -13,15 +13,99 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{f10f1316-7786-46ed-a95e-86337b777396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hacks">
+      <UniqueIdentifier>{64f772d5-b752-4a61-9a67-82e60db87ccc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\General Info">
+      <UniqueIdentifier>{2c474b9c-cf4e-4872-a42c-c15e2d655319}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ThreadSpoof.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Scan.cpp">
+      <Filter>Source Files\Hacks</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalPlayerCosmetics.cpp">
+      <Filter>Source Files\Hacks</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherPlayersColorAndNameChange.cpp">
+      <Filter>Source Files\Hacks</Filter>
+    </ClCompile>
+    <ClCompile Include="FakeAnimations.cpp">
+      <Filter>Source Files\Hacks</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCount.cpp">
+      <Filter>Source Files\General Info</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFunctionsBaseAddresses.hpp">
+      <Filter>Source Files\General Info</Filter>
+    </ClCompile>
+    <ClCompile Include="Sabotage.cpp">
+      <Filter>Source Files\Hacks</Filter>
+    </ClCompile>
+    <ClCompile Include="Doors.cpp">
+      <Filter>Source Files\Hacks</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonFile.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Hook.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ThreadSpoof.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Scan.h">
+      <Filter>Source Files\Hacks</Filter>
+    </ClInclude>
+    <ClInclude Include="HacksIncludes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalPlayerCosmetics.h">
+      <Filter>Source Files\Hacks</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherPlayersColorAndNameChange.h">
+      <Filter>Source Files\Hacks</Filter>
+    </ClInclude>
+    <ClInclude Include="FakeAnimations.h">
+      <Filter>Source Files\Hacks</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCount.h">
+      <Filter>Source Files\General Info</Filter>
+    </ClInclude>
+    <ClInclude Include="Sabotage.h">
+      <Filter>Source Files\Hacks</Filter>
+    </ClInclude>
+    <ClInclude Include="Doors.h">
+      <Filter>Source Files\Hacks</Filter>
+    </ClInclude>
+    <ClInclude Include="MainLoop.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="json.hpp">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonFile.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Hook.h">
+      <Filter>Source Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

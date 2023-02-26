@@ -88,6 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -102,7 +103,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,10 +141,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Doors.cpp" />
+    <ClCompile Include="FakeAnimations.cpp" />
+    <ClCompile Include="Hook.cpp" />
+    <ClCompile Include="JsonFile.cpp" />
+    <ClCompile Include="LocalPlayerCosmetics.cpp" />
+    <ClCompile Include="Memory.cpp" />
+    <ClCompile Include="OtherPlayersColorAndNameChange.cpp" />
+    <ClCompile Include="Sabotage.cpp" />
+    <ClCompile Include="Scan.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="GameFunctionsBaseAddresses.hpp" />
+    <ClCompile Include="ThreadSpoof.cpp" />
+    <ClCompile Include="PlayerCount.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Doors.h" />
+    <ClInclude Include="FakeAnimations.h" />
+    <ClInclude Include="HacksIncludes.h" />
+    <ClInclude Include="Hook.h" />
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="JsonFile.h" />
+    <ClInclude Include="LocalPlayerCosmetics.h" />
+    <ClInclude Include="MainLoop.hpp" />
+    <ClInclude Include="Memory.h" />
+    <ClInclude Include="OtherPlayersColorAndNameChange.h" />
+    <ClInclude Include="Sabotage.h" />
+    <ClInclude Include="Scan.h" />
+    <ClInclude Include="ThreadSpoof.h" />
+    <ClInclude Include="PlayerCount.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -141,7 +141,7 @@ namespace nlohmann
 
         @since version 1.0.0
         */
-        inline bool operator<(const value_t lhs, const value_t rhs) noexcept
+        bool operator<(const value_t lhs, const value_t rhs) noexcept
         {
             static constexpr std::array<std::uint8_t, 9> order = { {
                     0 /* null */, 3 /* object */, 4 /* array */, 5 /* string */,
@@ -1701,11 +1701,11 @@ JSON_HEDLEY_DIAGNOSTIC_POP
 #if \
     (defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)) || \
     (defined(__cplusplus) && (__cplusplus >= 199711L))
-#define JSON_HEDLEY_INLINE inline
+#define JSON_HEDLEY_inline
 #elif \
     defined(JSON_HEDLEY_GCC_VERSION) || \
     JSON_HEDLEY_ARM_VERSION_CHECK(6,2,0)
-#define JSON_HEDLEY_INLINE __inline__
+#define JSON_HEDLEY___inline__
 #elif \
     JSON_HEDLEY_MSVC_VERSION_CHECK(12,0,0) || \
     JSON_HEDLEY_INTEL_CL_VERSION_CHECK(2021,1,0) || \
@@ -1717,7 +1717,7 @@ JSON_HEDLEY_DIAGNOSTIC_POP
     JSON_HEDLEY_TI_CL7X_VERSION_CHECK(1,2,0) || \
     JSON_HEDLEY_TI_CLPRU_VERSION_CHECK(2,1,0) || \
     JSON_HEDLEY_MCST_LCC_VERSION_CHECK(1,25,10)
-#define JSON_HEDLEY_INLINE __inline
+#define JSON_HEDLEY___inline
 #else
 #define JSON_HEDLEY_INLINE
 #endif
@@ -1745,11 +1745,11 @@ JSON_HEDLEY_DIAGNOSTIC_POP
   JSON_HEDLEY_TI_CLPRU_VERSION_CHECK(2,1,0) || \
   JSON_HEDLEY_MCST_LCC_VERSION_CHECK(1,25,10) || \
   JSON_HEDLEY_IAR_VERSION_CHECK(8,10,0)
-#  define JSON_HEDLEY_ALWAYS_INLINE __attribute__((__always_inline__)) JSON_HEDLEY_INLINE
+#  define JSON_HEDLEY_ALWAYS___attribute__((__always_inline__)) JSON_HEDLEY_INLINE
 #elif \
   JSON_HEDLEY_MSVC_VERSION_CHECK(12,0,0) || \
   JSON_HEDLEY_INTEL_CL_VERSION_CHECK(2021,1,0)
-#  define JSON_HEDLEY_ALWAYS_INLINE __forceinline
+#  define JSON_HEDLEY_ALWAYS___forceinline
 #elif defined(__cplusplus) && \
     ( \
       JSON_HEDLEY_TI_ARMCL_VERSION_CHECK(5,2,0) || \
@@ -1759,11 +1759,11 @@ JSON_HEDLEY_DIAGNOSTIC_POP
       JSON_HEDLEY_TI_CL7X_VERSION_CHECK(1,2,0) || \
       JSON_HEDLEY_TI_CLPRU_VERSION_CHECK(2,1,0) \
     )
-#  define JSON_HEDLEY_ALWAYS_INLINE _Pragma("FUNC_ALWAYS_INLINE;")
+#  define JSON_HEDLEY_ALWAYS__Pragma("FUNC_ALWAYS_INLINE;")
 #elif JSON_HEDLEY_IAR_VERSION_CHECK(8,0,0)
-#  define JSON_HEDLEY_ALWAYS_INLINE _Pragma("inline=forced")
+#  define JSON_HEDLEY_ALWAYS__Pragma("inline=forced")
 #else
-#  define JSON_HEDLEY_ALWAYS_INLINE JSON_HEDLEY_INLINE
+#  define JSON_HEDLEY_ALWAYS_JSON_HEDLEY_INLINE
 #endif
 
 #if defined(JSON_HEDLEY_NEVER_INLINE)
@@ -1789,21 +1789,21 @@ JSON_HEDLEY_DIAGNOSTIC_POP
     JSON_HEDLEY_TI_CLPRU_VERSION_CHECK(2,1,0) || \
     JSON_HEDLEY_MCST_LCC_VERSION_CHECK(1,25,10) || \
     JSON_HEDLEY_IAR_VERSION_CHECK(8,10,0)
-#define JSON_HEDLEY_NEVER_INLINE __attribute__((__noinline__))
+#define JSON_HEDLEY_NEVER___attribute__((__noinline__))
 #elif \
     JSON_HEDLEY_MSVC_VERSION_CHECK(13,10,0) || \
     JSON_HEDLEY_INTEL_CL_VERSION_CHECK(2021,1,0)
-#define JSON_HEDLEY_NEVER_INLINE __declspec(noinline)
+#define JSON_HEDLEY_NEVER___declspec(noinline)
 #elif JSON_HEDLEY_PGI_VERSION_CHECK(10,2,0)
-#define JSON_HEDLEY_NEVER_INLINE _Pragma("noinline")
+#define JSON_HEDLEY_NEVER__Pragma("noinline")
 #elif JSON_HEDLEY_TI_CL6X_VERSION_CHECK(6,0,0) && defined(__cplusplus)
-#define JSON_HEDLEY_NEVER_INLINE _Pragma("FUNC_CANNOT_INLINE;")
+#define JSON_HEDLEY_NEVER__Pragma("FUNC_CANNOT_INLINE;")
 #elif JSON_HEDLEY_IAR_VERSION_CHECK(8,0,0)
-#define JSON_HEDLEY_NEVER_INLINE _Pragma("inline=never")
+#define JSON_HEDLEY_NEVER__Pragma("inline=never")
 #elif JSON_HEDLEY_COMPCERT_VERSION_CHECK(3,2,0)
-#define JSON_HEDLEY_NEVER_INLINE __attribute((noinline))
+#define JSON_HEDLEY_NEVER___attribute((noinline))
 #elif JSON_HEDLEY_PELLES_VERSION_CHECK(9,0,0)
-#define JSON_HEDLEY_NEVER_INLINE __declspec(noinline)
+#define JSON_HEDLEY_NEVER___declspec(noinline)
 #else
 #define JSON_HEDLEY_NEVER_INLINE
 #endif
@@ -2300,7 +2300,7 @@ JSON_HEDLEY_DIAGNOSTIC_POP
 */
 #define NLOHMANN_JSON_SERIALIZE_ENUM(ENUM_TYPE, ...)                                            \
     template<typename BasicJsonType>                                                            \
-    inline void to_json(BasicJsonType& j, const ENUM_TYPE& e)                                   \
+    void to_json(BasicJsonType& j, const ENUM_TYPE& e)                                   \
     {                                                                                           \
         static_assert(std::is_enum<ENUM_TYPE>::value, #ENUM_TYPE " must be an enum!");          \
         static const std::pair<ENUM_TYPE, BasicJsonType> m[] = __VA_ARGS__;                     \
@@ -2312,7 +2312,7 @@ JSON_HEDLEY_DIAGNOSTIC_POP
         j = ((it != std::end(m)) ? it : std::begin(m))->second;                                 \
     }                                                                                           \
     template<typename BasicJsonType>                                                            \
-    inline void from_json(const BasicJsonType& j, ENUM_TYPE& e)                                 \
+    void from_json(const BasicJsonType& j, ENUM_TYPE& e)                                 \
     {                                                                                           \
         static_assert(std::is_enum<ENUM_TYPE>::value, #ENUM_TYPE " must be an enum!");          \
         static const std::pair<ENUM_TYPE, BasicJsonType> m[] = __VA_ARGS__;                     \
@@ -2492,8 +2492,8 @@ JSON_HEDLEY_DIAGNOSTIC_POP
 @since version 3.9.0
 */
 #define NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Type, ...)  \
-    inline void to_json(nlohmann::json& nlohmann_json_j, const Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \
-    inline void from_json(const nlohmann::json& nlohmann_json_j, Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM, __VA_ARGS__)) }
+    void to_json(nlohmann::json& nlohmann_json_j, const Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \
+    void from_json(const nlohmann::json& nlohmann_json_j, Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM, __VA_ARGS__)) }
 
 #ifndef JSON_USE_IMPLICIT_CONVERSIONS
 #define JSON_USE_IMPLICIT_CONVERSIONS 1
@@ -2524,7 +2524,7 @@ namespace nlohmann
 
         @since version 2.0.0
         */
-        inline void replace_substring(std::string& s, const std::string& f,
+        void replace_substring(std::string& s, const std::string& f,
             const std::string& t)
         {
             JSON_ASSERT(!f.empty());
@@ -2543,7 +2543,7 @@ namespace nlohmann
          *
          * Note the order of escaping "~" to "~0" and "/" to "~1" is important.
          */
-        inline std::string escape(std::string s)
+        std::string escape(std::string s)
         {
             replace_substring(s, "~", "~0");
             replace_substring(s, "/", "~1");
@@ -4978,7 +4978,7 @@ namespace nlohmann
     {
 
         // boost::hash_combine
-        inline std::size_t combine(std::size_t seed, std::size_t h) noexcept
+        std::size_t combine(std::size_t seed, std::size_t h) noexcept
         {
             seed ^= h + 0x9e3779b9 + (seed << 6U) + (seed >> 2U);
             return seed;
@@ -5518,17 +5518,17 @@ namespace nlohmann
         }
 
         // Special cases with fast paths
-        inline file_input_adapter input_adapter(std::FILE* file)
+        file_input_adapter input_adapter(std::FILE* file)
         {
             return file_input_adapter(file);
         }
 
-        inline input_stream_adapter input_adapter(std::istream& stream)
+        input_stream_adapter input_adapter(std::istream& stream)
         {
             return input_stream_adapter(stream);
         }
 
-        inline input_stream_adapter input_adapter(std::istream&& stream)
+        input_stream_adapter input_adapter(std::istream&& stream)
         {
             return input_stream_adapter(stream);
         }
@@ -8114,7 +8114,7 @@ namespace nlohmann
 
         @note from https://stackoverflow.com/a/1001328/266378
         */
-        static inline bool little_endianess(int num = 1) noexcept
+        static bool little_endianess(int num = 1) noexcept
         {
             return *reinterpret_cast<char*>(&num) == 1;
         }
@@ -15074,7 +15074,7 @@ namespace nlohmann
 
                  alpha <= e_c + e + q <= gamma.
             */
-            inline cached_power get_cached_power_for_binary_exponent(int e)
+            cached_power get_cached_power_for_binary_exponent(int e)
             {
                 // Now
                 //
@@ -15238,7 +15238,7 @@ namespace nlohmann
             For n != 0, returns k, such that pow10 := 10^(k-1) <= n < 10^k.
             For n == 0, returns 1 and sets pow10 := 1.
             */
-            inline int find_largest_pow10(const std::uint32_t n, std::uint32_t& pow10)
+            int find_largest_pow10(const std::uint32_t n, std::uint32_t& pow10)
             {
                 // LCOV_EXCL_START
                 if (n >= 1000000000)
@@ -15292,7 +15292,7 @@ namespace nlohmann
                 return 1;
             }
 
-            inline void grisu2_round(char* buf, int len, std::uint64_t dist, std::uint64_t delta,
+            void grisu2_round(char* buf, int len, std::uint64_t dist, std::uint64_t delta,
                 std::uint64_t rest, std::uint64_t ten_k)
             {
                 JSON_ASSERT(len >= 1);
@@ -15333,7 +15333,7 @@ namespace nlohmann
             Generates V = buffer * 10^decimal_exponent, such that M- <= V <= M+.
             M- and M+ must be normalized and share the same exponent -60 <= e <= -32.
             */
-            inline void grisu2_digit_gen(char* buffer, int& length, int& decimal_exponent,
+            void grisu2_digit_gen(char* buffer, int& length, int& decimal_exponent,
                 diyfp M_minus, diyfp w, diyfp M_plus)
             {
                 static_assert(kAlpha >= -60, "internal error");
@@ -15574,7 +15574,7 @@ namespace nlohmann
             The buffer must be large enough, i.e. >= max_digits10.
             */
             JSON_HEDLEY_NON_NULL(1)
-                inline void grisu2(char* buf, int& len, int& decimal_exponent,
+                void grisu2(char* buf, int& len, int& decimal_exponent,
                     diyfp m_minus, diyfp v, diyfp m_plus)
             {
                 JSON_ASSERT(m_plus.e == m_minus.e);
@@ -15674,7 +15674,7 @@ namespace nlohmann
             */
             JSON_HEDLEY_NON_NULL(1)
                 JSON_HEDLEY_RETURNS_NON_NULL
-                inline char* append_exponent(char* buf, int e)
+                char* append_exponent(char* buf, int e)
             {
                 JSON_ASSERT(e > -1000);
                 JSON_ASSERT(e < 1000);
@@ -15726,7 +15726,7 @@ namespace nlohmann
             */
             JSON_HEDLEY_NON_NULL(1)
                 JSON_HEDLEY_RETURNS_NON_NULL
-                inline char* format_buffer(char* buf, int len, int decimal_exponent,
+                char* format_buffer(char* buf, int len, int decimal_exponent,
                     int min_exp, int max_exp)
             {
                 JSON_ASSERT(min_exp < 0);
@@ -16491,7 +16491,7 @@ namespace nlohmann
             @param[in] x  unsigned integer number to count its digits
             @return    number of decimal digits
             */
-            inline unsigned int count_digits(number_unsigned_t x) noexcept
+            unsigned int count_digits(number_unsigned_t x) noexcept
             {
                 unsigned int n_digits = 1;
                 for (;;)
@@ -16772,7 +16772,7 @@ namespace nlohmann
              * absolute values of INT_MIN and INT_MAX are usually not the same. See
              * #1708 for details.
              */
-            inline number_unsigned_t remove_sign(number_integer_t x) noexcept
+            number_unsigned_t remove_sign(number_integer_t x) noexcept
             {
                 JSON_ASSERT(x < 0 && x < (std::numeric_limits<number_integer_t>::max)()); // NOLINT(misc-redundant-expression)
                 return static_cast<number_unsigned_t>(-(x + 1)) + 1;
@@ -23123,7 +23123,7 @@ namespace nlohmann
         could be used, for instance
         @code {.cpp}
         template<typename T, typename = typename std::enable_if<std::is_floating_point<T>::value, T>::type>
-        inline bool is_same(T a, T b, T epsilon = std::numeric_limits<T>::epsilon()) noexcept
+        bool is_same(T a, T b, T epsilon = std::numeric_limits<T>::epsilon()) noexcept
         {
             return std::abs(a - b) <= epsilon;
         }
@@ -25790,7 +25790,7 @@ namespace std
 @since version 1.0.0
 */
     template<>
-    inline void swap<nlohmann::json>(nlohmann::json& j1, nlohmann::json& j2) noexcept( // NOLINT(readability-inconsistent-declaration-parameter-name)
+    void swap<nlohmann::json>(nlohmann::json& j1, nlohmann::json& j2) noexcept( // NOLINT(readability-inconsistent-declaration-parameter-name)
         is_nothrow_move_constructible<nlohmann::json>::value&&  // NOLINT(misc-redundant-expression)
         is_nothrow_move_assignable<nlohmann::json>::value
         )
@@ -25816,7 +25816,7 @@ if no parse error occurred.
 @since version 1.0.0
 */
 JSON_HEDLEY_NON_NULL(1)
-inline nlohmann::json operator "" _json(const char* s, std::size_t n)
+nlohmann::json operator "" _json(const char* s, std::size_t n)
 {
     return nlohmann::json::parse(s, s + n);
 }
@@ -25835,7 +25835,7 @@ object if no parse error occurred.
 @since version 2.0.0
 */
 JSON_HEDLEY_NON_NULL(1)
-inline nlohmann::json::json_pointer operator "" _json_pointer(const char* s, std::size_t n)
+nlohmann::json::json_pointer operator "" _json_pointer(const char* s, std::size_t n)
 {
     return nlohmann::json::json_pointer(std::string(s, n));
 }
